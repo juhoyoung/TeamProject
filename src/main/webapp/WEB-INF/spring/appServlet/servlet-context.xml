@@ -27,7 +27,7 @@
 	<websocket:handlers>
 		<websocket:mapping handler="myHandler" path="/echo-ws"/>
 	</websocket:handlers>
-	<beans:bean id="myHandler" class="com.team.chatHandler.MultiChatWebSocketHandler"/>
+	<beans:bean id="myHandler" class="com.team.chat.Handler.MultiChatWebSocketHandler"/>
 	
 	<!-- tiles -->
 	<beans:bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
@@ -42,6 +42,17 @@
 			</beans:list>
 		</beans:property>
 	</beans:bean>
+	
+	<!-- interceptor -->
+	<beans:bean id="loginInterceptor" class="com.team.login.Interceptor.LoginInterceptor"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="loginPOST"/>
+			<beans:ref bean = "loginInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 	<!-- 파일업로드 필요한 bean -->
 	<beans:bean id="multipartResolver" class ="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- 파일업로드 용량 -->
@@ -54,5 +65,5 @@
 	</beans:bean>
 	
 	
-	<context:component-scan base-package="com.team" />
+	<context:component-scan base-package="com.team.*" />
 </beans:beans>

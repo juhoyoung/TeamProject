@@ -33,12 +33,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     </div>
   </div>
 </div>  
-  <div class="baby"><a href="main2" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><img src="./resources/css/logo2.png" height="50px" class="babylogo"></a></div> 
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
-    <c:if test="${msg == 'success'}">
-    	<h2>${sessionScope.NAME}님 환영합니다.</h2>
-    </c:if>
-  </a>
+ <div class="baby"><a href="main2" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><img src="./resources/css/logo2.png" height="50px" class="babylogo"></a></div> 
+  <h5 class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" >${member.NAME}님 환영합니다.</h5>
  </div>
 </div>
 

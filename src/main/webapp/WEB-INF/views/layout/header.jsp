@@ -19,9 +19,7 @@
   </div>
 </div>  
   <div class="baby"><a href="main2" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><img src="./resources/css/logo2.png" height="50px" class="babylogo"></a></div> 
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
-    <img src="/w3images/avatar2.png" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
-  </a>
+    <h5 class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" >${member.NAME}님 환영합니다.</h5>
  </div>
 </div>
 
