@@ -38,7 +38,7 @@
 								title="Send Message"><i class="fa fa-envelope"
 								id="message_i"></i></a> <a href="#"
 								class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
-								onclick="window.open('${pageContext.request.contextPath}/${member.ID}/multiChat', 'multiChat', 'width=400, height=650')"
+								onclick="window.open('${pageContext.request.contextPath}/${member.ID}/multiChatList', 'multiChat', 'width=400, height=650')"
 								title="Chat"><i class="fa fa-weixin" id="chat_i"
 								aria-hidden="true"></i></a>
 							<%-- 새 글 알림 --%>

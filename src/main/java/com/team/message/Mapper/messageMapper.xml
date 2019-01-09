@@ -4,15 +4,43 @@
 <mapper namespace="com.team.message.Mapper.messageMapper">
 	
 	<!-- 쪽지 전체 목록 -->
-	<select id="listAll" resultType="MessageVO">
-		SELECT MESSAGE_NO, MESSAGE_SENDER, MESSAGE_RECEIVER, MESSAGE_SUBJECT, MESSAGE_CONTENT, MESSAGE_SENDTIME, MESSAGE_READTIME, MESSAGE_READVAL 
+	<select id="listAll" resultType="MessageVO" parameterType="String">
+		SELECT MESSAGE_NO, MESSAGE_SENDER, MESSAGE_SUBJECT, MESSAGE_SENDTIME, MESSAGE_READVAL
 		FROM TB_MESSAGE
+		WHERE MESSAGE_RECEIVER = #{message_id}
+		ORDER BY MESSAGE_SENDTIME DESC
+	</select>
+	
+	<!-- 검색한 쪽지 리스트 -->
+	<select id="searchList" resultType="MessageVO">
+		SELECT *
+		FROM TB_MESSAGE
+			<!-- 검색 옵션이 전체 검색일 경우 -->
+			<if test="searchKey!=null">
+				WHERE MESSAGE_SENDER LIKE CONCAT("%" , #{keyword} , "%")
+				OR MESSAGE_SUBJECT LIKE CONCAT("%" , #{keyword} , "%")
+				OR MESSAGE_CONTENT LIKE CONCAT("%" , #{keyword} , "%")
+			</if>
+		ORDER BY MESSAGE_SENDTIME DESC
+	</select>
+	
+	<select id="pagingCount" resultType="Integer">
+		SELECT COUNT(*)
+		FROM TB_MESSAGE
+	</select>
+	
+	<!-- 내가 보낸 쪽지 전체 목록 -->
+	<select id="sendListAll" resultType="SendMessageVO" parameterType="String">
+		SELECT *
+		FROM TB_MESSAGE
+		WHERE MESSAGE_SENDER = #{message_id}
 		ORDER BY MESSAGE_SENDTIME DESC
 	</select>
 
 	<!-- 읽지 않은 쪽지 수 -->
 	<select id="count" resultType="int" parameterType="String">
-		SELECT COUNT(*) FROM TB_MESSAGE
+		SELECT COUNT(*) 
+		FROM TB_MESSAGE
 		WHERE MESSAGE_RECEIVER = #{message_id} 
 		AND MESSAGE_READVAL IS NULL
 	</select>	

@@ -17,7 +17,7 @@
 						<col width="25%">
 						<col width="25%">
 					</colgroup>
-					<tr align="center" style="font-weight: 600; color: white;">
+					<tr align="center" style="font-weight: 600; color: white;" height="30px;">
 						<td><input type="hidden" value="메세지넘버"></td>
 						<td>받는 사람</td>
 						<td>제목</td>
@@ -25,7 +25,7 @@
 						<td>확인 여부</td>
 					</tr>
 					<c:forEach items="${mslist}" var="message">
-					 	<c:if test="${member.ID eq message.MESSAGE_SENDER}">  
+<%-- 					 	<c:if test="${member.ID eq message.MESSAGE_SENDER}">   --%>
 							<tr bgcolor="white" align="center" height="40px" style="font-weight: 500; font-size: 16px;">
 								<td><input type="hidden" value="${message.MESSAGE_NO}"></td>
 								<td>${message.MESSAGE_RECEIVER}</td>
@@ -45,7 +45,7 @@
 								</c:choose>
 								</td>
 							</tr>
-		 				</c:if>  
+<%-- 		 				</c:if>   --%>
 					</c:forEach>
 				</table>
 					<div class="btn_Message">

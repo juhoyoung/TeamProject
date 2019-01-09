@@ -16,4 +16,8 @@ public class ChatDAOImpl implements ChatDAO{
 	public void sendMessage(ChatVO cvo) throws Exception{
 		sqlSession.insert(namespace+".insert", cvo);
 	}
+	
+	public ChatVO sendRead(ChatVO cvo)throws Exception{
+		return sqlSession.selectOne(namespace+".read", cvo);
+	}
 }

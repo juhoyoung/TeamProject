@@ -1,6 +1,7 @@
 package com.team.deal.DAO;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -17,12 +18,12 @@ public class DealDAOImpl implements DealDAO {
 SqlSession sqlSession;
 
 String namespace = "com.team.deal.Mapper.DealMapper";
-	@Override
+/*	@Override
 	public List<DealDTO> dealList() throws Exception {
 	
 		return sqlSession.selectList(namespace+".dealList");
 				
-	}
+	}*/
 	@Override
 	public void writerDeal(DealDTO ddto) throws Exception {
 		sqlSession.insert(namespace+".dealWriter", ddto);
@@ -43,5 +44,16 @@ String namespace = "com.team.deal.Mapper.DealMapper";
 		sqlSession.delete(namespace+".dealDelete", DEAL_NUM);
 		
 	}
+	@Override
+	public List<DealDTO> getListWithPaging(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+".getListWithPaging");
+	}
+	@Override
+	public int totalCount() throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 }

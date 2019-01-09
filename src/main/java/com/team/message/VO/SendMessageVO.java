@@ -12,8 +12,8 @@ public class SendMessageVO {
 	private String MESSAGE_RECEIVER; //쪽지 수신자
 	private String MESSAGE_SUBJECT; //쪽지 제목
 	private String MESSAGE_CONTENT; //쪽지 내용
-	private Timestamp MESSAGE_READTIME; //쪽지 확인 시간(수신자)
 	private Timestamp MESSAGE_SENDTIME; //쪽지 보낸 시간(송신자)
+	private Timestamp MESSAGE_READTIME;
 	private boolean MESSAGE_READVAL; //쪽지 확인 여부
 	
 	//getter, setter 메서드

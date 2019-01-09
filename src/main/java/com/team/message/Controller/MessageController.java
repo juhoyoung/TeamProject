@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team.member.VO.MemberVO;
 import com.team.message.Service.MessageService;
+import com.team.message.VO.MessageSearchVO;
 import com.team.message.VO.MessageVO;
+import com.team.message.VO.PageMaker;
 import com.team.message.VO.SendMessageVO;
 
 @Controller
@@ -34,12 +36,31 @@ public class MessageController {
 		int count = messageService.countList(memberVO);
 		model.addAttribute("messageCount", count);
 		
-		List<MessageVO>mlist = messageService.listAll();		
+		List<MessageVO>mlist = messageService.listAll(memberVO);		
 		model.addAttribute("mlist", mlist);
 		
 		return "main.jsp?center=message/messageList";
 	}
 	
+	//검색
+	@RequestMapping(value="{id}/messageList", method=RequestMethod.POST)
+	public String messageSearch(@PathVariable String id, HttpSession session, MessageSearchVO msvo, Model model)throws Exception{
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		model.addAttribute("profile", memberVO);
+		
+		int count = messageService.countList(memberVO);
+		model.addAttribute("messageCount", count);
+		
+		int count_full = messageService.listCount(memberVO, msvo);
+		model.addAttribute("count", count_full);
+		model.addAttribute("searchlist", messageService.listAll(memberVO, msvo));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(msvo);
+		pageMaker.setTotalCount(messageService.listCount(memberVO, msvo));
+		model.addAttribute("pageMaker", pageMaker);
+		return "main.jsp?center=message/messageList";
+	}
+		
 	//내가 보낸 쪽지
 	@RequestMapping(value="{id}/messageSendList", method=RequestMethod.GET)
 	public String messageSendList(@PathVariable String id, HttpSession session, Model model)throws Exception{
@@ -49,7 +70,7 @@ public class MessageController {
 		int count = messageService.countList(memberVO);
 		model.addAttribute("messageCount", count);
 		
-		List<SendMessageVO>mslist = messageService.sendListAll();
+		List<SendMessageVO>mslist = messageService.sendListAll(memberVO);
 		model.addAttribute("mslist", mslist);
 		
 		return "main.jsp?center=message/messageSendList";

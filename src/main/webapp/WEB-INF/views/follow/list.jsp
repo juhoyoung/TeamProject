@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/follow.css">
+<!-- CSS -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/follow.css">
 <%-- 팔로워 페이지인지 팔로잉 페이지인지 --%>
 <input type="hidden" id="page_type" value="${type}">
 <%-- 현재 봐야하는 페이지의 아이디 --%>
@@ -12,15 +12,15 @@
 		<div class="w3-card w3-round w3-white" style="padding: 30px;">
 			<div id="div_flist" class="w3-container w3-padding">
 				<span id="s_listArea"> <%-- 팔로워 팔로잉 목록 버튼 --%>
-					<button type="button" class="w3-button w3-theme-d1"
+					<button type="button" class="w3-button w3-theme-d1 w3-hover-white"
 						<%-- onclick="getFollowerList('${member.ID}' , '${page_id}')" --%>
 						id="getfollower_Btn">
-						<i class="fa fa-thumbs-up"></i> 팔로워
+						<i class="fa fa-thumbs-up" style="color: #4497fd;"></i><span style="font-weight: bold; color:#1d2c52;">&nbsp;팔로워</span>
 					</button>
-					<button type="button" class="w3-button w3-theme-d1"
+					<button type="button" class="w3-button w3-theme-d1 w3-hover-white"
 						<%-- onclick="getFollowingList('${member.ID}' , '${page_id}')" --%>
 						id="getfollowing_Btn">
-						<i class="fa fa-thumbs-up"></i> 팔로잉
+						<i class="fa fa-thumbs-up" style="color: #597eff;"></i><span style="font-weight: bold; color:#1d2c52;">&nbsp;팔로잉</span>
 					</button>
 				</span>
 				<hr class="w3-clear" style="margin: 5px 0 20px;">			

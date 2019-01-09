@@ -6,7 +6,9 @@
         <div class="w3-col m12">
           <div class="w3-card w3-round w3-white">
             <div class="w3-container w3-padding">
-              <div align="center" style="padding: 30px;">	
+              <div align="center" style="padding: 30px;">
+              <%-- 로그인된 아이디 --%>
+<input type="hidden" id="mem_id" value="${member.ID}">
 <h2>글쓰기 페이지</h2>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <form name="ddto" method="post" action="${path}/${member.ID}/deal/insert" class="table" >
@@ -18,8 +20,7 @@
             <input type="reset" value="리셋">
             <input type="button" value="목록" onclick="location.href='${path}/${member.ID}/deal/list'">
         </div>
-		<!--섬머노트  -->
- 	<div id="summernote"></div>
+		
 </form>
 			</div>
             </div>

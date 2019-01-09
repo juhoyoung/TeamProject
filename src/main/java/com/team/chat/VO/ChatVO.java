@@ -8,7 +8,8 @@ public class ChatVO {
 	private String CHAT_RECEIVER;
 	private String CHAT_SENDCONTENT;
 	private Timestamp CHAT_SENDTIME;
-	
+	private boolean CHAT_READVAL;
+
 	//getter, setter 메서드
 	public int getCHAT_NO() {
 		return CHAT_NO;
@@ -39,5 +40,11 @@ public class ChatVO {
 	}
 	public void setCHAT_SENDTIME(Timestamp cHAT_SENDTIME) {
 		CHAT_SENDTIME = cHAT_SENDTIME;
+	}
+	public boolean isCHAT_READVAL() {
+		return CHAT_READVAL;
+	}
+	public void setCHAT_READVAL(boolean cHAT_READVAL) {
+		CHAT_READVAL = cHAT_READVAL;
 	}
 }

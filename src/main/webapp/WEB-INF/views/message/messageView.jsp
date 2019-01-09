@@ -21,7 +21,7 @@
 	<font color="white" id="send_text" style="font-weight: 600; font-size: 18px;">받은 쪽지 확인</font>
 </div>
 <c:if test="${member.ID!= null}">
-	<div id="viewForm" title="메세지 확인">
+	<div id="viewForm" title="메세지 확인" style="padding: 55px 30px; font-size: 15px; line-height: 200%;">
 		<input type="hidden" value="${mdto.MESSAGE_NO}" id="MESSAGE_NO" name="MESSAGE_NO">
 		<table id="viewTable" align="center" width="90%" cellpadding="0" cellspacing="0" border="0">
 			<tr bgcolor="white">
@@ -40,13 +40,11 @@
 				<th>내용</th>
 				<td>${mdto.MESSAGE_CONTENT}</td>
 			</tr>
-			<tr align="center">
-				<td colspan="2">
-					<input type="submit" value="답장" id="sendBtn" onclick="location.href='${pageContext.request.contextPath}/${member.ID}/messageResend?MESSAGE_NO=${mdto.MESSAGE_NO}'">
-					<input type="button" value="창닫기" id="closeBtn" onclick="window.close()">
-				</td>
-			</tr>
 		</table>
+		<div align="center" style="line-height: 150%; margin-top: 50px;">
+			<input type="submit" value="답장" id="sendBtn" onclick="location.href='${pageContext.request.contextPath}/${member.ID}/messageResend?MESSAGE_NO=${mdto.MESSAGE_NO}'">
+			<input type="button" value="창닫기" id="closeBtn" onclick="window.close()">
+		</div>
 	</div>
 </c:if>
 <!-- js 파일 -->

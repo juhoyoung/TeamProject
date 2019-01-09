@@ -12,7 +12,7 @@
 	  	height: 70px;
 	  	border-radius: 5px;
 	  	line-height: 70px;
-	  	padding: 2px;
+	  	padding: 2px;	
 	}
 	</style>
 </head>
@@ -20,8 +20,8 @@
 <body>
 	<div class="w3-card w3-white" id="quick_menu">
 		<a href="#" onclick="scrollToTop()">
-			<i class="fa fa-arrow-up" aria-hidden="true"></i>
-			<font style="font-weight: bold;">TOP</font>
+			<i style="color: #4497fd;" class="fa fa-arrow-up" aria-hidden="true"></i>
+			<font style="font-weight: bold; color: #4497fd;">TOP</font>
 		</a>
 	</div>
 <script src="${pageContext.request.contextPath}/resources/js/common.js"></script>

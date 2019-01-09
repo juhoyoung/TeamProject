@@ -13,7 +13,18 @@
 }
 
 </style>
+<script type="text/javascript">
+var actionForm = $("#actionForm");
+	$(".paginate_button a").on("click",function(e){
+		e.preventDefault();
+		console.log("click");
+		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+		actionForm.submit();
+	});
+</script>
 </head>
+<%-- 로그인된 아이디 --%>
+<input type="hidden" id="mem_id" value="${member.ID}">
 					<div class="w3-row-padding">
 						<div class="w3-col m12">
 							<div class="w3-card w3-round w3-white">
@@ -63,7 +74,6 @@
 														<td><a
 															href="${path}/${member.ID}/deal/read?DEAL_NUM=${row.DEAL_NUM}"
 															class="ablack">${row.DEAL_SUBJECT}</a></td>
-														<!-- 내용은 나중에 list페이지에서 삭제 -->
 														<td>${row.DEAL_ID}</td>
 
 														<!-- 만약 오늘이면 HH:mm:ss만 그 밖이면 yyyy-MM-dd만 상세 보기에서는 yyyy-MM-dd HH:mm:ss -->
@@ -89,7 +99,7 @@
 												</c:forEach>
 											</table>
 
-											<table id="image">
+										 	<table id="image">
 												<c:forEach var="row" items="${list}">
 													<tr>
 														<td>
@@ -101,7 +111,7 @@
 																	<h4 class="card-title">${row.DEAL_SUBJECT}</h4>
 																	<p class="card-text">일단은 실험..</p>
 																	<a
-																		href="${path }/deal/read.do?DEAL_NUM=${row.DEAL_NUM}"
+																		href="${path }/${member.ID}/deal/read.do?DEAL_NUM=${row.DEAL_NUM}"
 																		class="btn btn-primary">자세히보기</a>
 																</div>
 															</div>
@@ -156,7 +166,28 @@
 
 											</table>
 
-										<br> <br> <br>
+										<br> <br>
+										  <!-- pagination -->
+                            
+                            	<ul class="pagination">
+                            		<c:if test="${pageMaker.prev }">
+                            			<li class="paginate_button previous"><a href="${pageMaker.startPage-1 }">Previous</a></li>
+                            		</c:if>
+                            		<c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+                            			<li class="paginate_button ${pageMaker.cri.pageNum==num?"active":""}"><a href="${num }">${num }</a></li>
+                            		</c:forEach>
+                            		<c:if test="${pageMaker.next }">
+                            			<li class="paginate_button next"><a href="${pageMaker.endPage+1 }">Next</a></li>
+                            		</c:if>
+                            	</ul>
+                           
+                             <!-- /. pagination -->
+                             <form id="actionForm" action="/board/list" method="get">
+                             	<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+                             	<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+                             </form>
+                             
+                             
 									</div>
 								</div>
 							</div>

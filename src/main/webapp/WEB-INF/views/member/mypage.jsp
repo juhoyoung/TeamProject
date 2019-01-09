@@ -22,19 +22,41 @@
 			  font-weight: 600;
 	}
 </style>
-<script id="template" type="text/x-handlebars-template">
-{{#each .}}
-<span class="imageList">
-	<a href="{{getView ID}}">
-		<span id="{{ID}}">
-			<img src="${pageContext.request.contextPath}/mypage/display?imageName={{PIC}}" alt="view" />
-		</span>
-	</a>
-</span>
-{{/each}}
+<script id ="imgLogin" type="text/x-handlebars-template">
+	<li>
+		<input type="hidden" name="PIC1" id="PIC1" value ="{{originalFileUrl}}">
+		<div class = "mailbox-attachment-info">
+			<a href ="{{originalFileUrl}}" class="mailbox-attachment-name">
+				<i class = "fa fa-paperclip"></i>{{originalFileName}}
+			</a>
+			<a href="{{fullName}}" class = "btn btn-default btn-xs pull-right delBtn">
+				<i class="fa fa-fw fa-remove"></i>
+			</a>
+		</div>
+	</li>
 </script>
+<script  src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.7/handlebars.min.js"></script>
-<script type="text/javascript" src = "${pageContext.request.contextPath}/resources/js/imglogin.js"></script>
+<script type="text/javascript" src = "${pageContext.request.contextPath}/resources/js/imglogin2.js"></script>
+<script type="text/javascript">
+var temp; 
+
+function input(){
+var input = document.getElementById("PIC1").value; 
+temp = input;
+document.getElementById("PIC").value = temp;
+}
+</script>
+<script type="text/javascript">
+		$(document).ready(function() {
+			$("#btnDelete").click(function() {
+			if(confirm("정말 탈퇴하시겠습니까?")){
+				document.member.action="${pageContext.request.contextPath}/delete.do";
+				document.member.submit();
+			}	
+		});
+	});
+</script>
       <div class="w3-row-padding">
         <div class="w3-col m12">
           <div class="w3-card w3-round w3-white">
@@ -45,7 +67,8 @@
 					<table border="0" width="350" >
 						<form:form commandName="member"
 								   method="post" 
-								   action="${pageContext.request.contextPath}/mypageOk"> 
+								   action="${pageContext.request.contextPath}/mypageOk"
+								   name="member"> 
 							<tr>
 								<th>아이디</th>
 								<td>
@@ -108,24 +131,22 @@
 							</tr>
 							<tr>
 								<td></td>
-								<td class="imgfile" colspan="2">
+								<td class="imgfile">
 									<input type="file" class = "file">
-								</td>
-							</tr>						
-							<tr>
-								<td>
 									<ul class = "uploadedFileList"></ul>
 									<form:hidden path="PIC" id="PIC"/>
 								</td>
-							</tr>				
+							</tr>	
 							<tr>
 								<td colspan="3" align="center" style="margin-top: 10px;">
 									<input type="submit" id="checkBtn" value="수정"/>
 									<input type="button" id="cancelBtn" value="취소" onclick="history.back();">
+									<input type="button" value="회원 탈퇴" id="btnDelete">
 								</td>
 							</tr>
 						</form:form>
 					</table>
+					<button onclick="input()">이미지 전송</button>
 				</div>
 			</div>
           </div>

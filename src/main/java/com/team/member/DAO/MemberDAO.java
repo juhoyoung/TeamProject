@@ -16,4 +16,9 @@ public interface MemberDAO {
 
 	public List<MemberVO> GetSearchMember(Map<String, String> searchInfo);
 	
+	public boolean checkPw(String ID, String PWD);
+
+	public int idcheck(String ID);
+	
+	public void deleteMember(String ID);
 }

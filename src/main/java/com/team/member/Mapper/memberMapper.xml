@@ -19,7 +19,7 @@
 	
 	<update id="updateMember" parameterType="com.team.member.VO.MemberVO">		
 		UPDATE MEMBER SET
-		PWD=#{PWD,jdbcType=VARCHAR}, NAME=#{NAME,jdbcType=VARCHAR}, PHONE=#{PHONE,jdbcType=VARCHAR}, EMAIL=#{EMAIL,jdbcType=VARCHAR}, MODDATE=NOW()
+		PWD=#{PWD,jdbcType=VARCHAR}, NAME=#{NAME,jdbcType=VARCHAR}, PHONE=#{PHONE,jdbcType=VARCHAR}, EMAIL=#{EMAIL,jdbcType=VARCHAR}, MODDATE=NOW(), PIC=#{PIC,jdbcType=VARCHAR}
 		WHERE ID=#{ID,jdbcType=VARCHAR}
 	</update>
 	
@@ -36,6 +36,19 @@
 		limit ${pageNum} , 12
 	</select>
 	
-	
+	<select id="idcheck" parameterType="String" resultType="Integer">
+	SELECT COUNT(*) FROM MEMBER
+	WHERE ID =#{ID} 
+	</select>
+
+<delete id="deleteMember">
+		DELETE FROM MEMBER
+		WHERE ID = #{ID}
+	</delete>	
+  
+  	<select id="checkPw" resultType="int">
+  		SELECT COUNT(*) FROM MEMBER
+  		WHERE ID = #{ID} AND PWD = #{PWD}
+  	</select>
   
 </mapper>

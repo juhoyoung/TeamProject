@@ -17,9 +17,11 @@
 <!-- font -->
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 </head>
+<%-- 로그인된 아이디 --%>
+<input type="hidden" id="mem_id" value="${member.ID}">
 <!-- body -->
 <body class="w3-theme-l5">
-<div class="main">
+<div class="main" style="overflow-y:auto;">
 <!-- Header -->
 	<jsp:include page="../layout/header.jsp"/>
 <!-- END Header -->

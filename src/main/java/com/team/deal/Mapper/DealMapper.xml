@@ -3,44 +3,48 @@
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team.deal.Mapper.DealMapper">
 
-<!-- 게시물 목록 불러오기 -->
-<select id="dealList" resultType="com.team.deal.DTO.DealDTO">
-	SELECT DEAL_NUM,DEAL_ID,DEAL_SUBJECT,DEAL_CONTENT,DEAL_REGION,DEAL_IMG,DEAL_READCOUNT,DEAL_DATETIME
-	FROM TB_DEAL ORDER BY DEAL_NUM DESC
-</select>
+	<!-- 게시물 목록 불러오기 -->
+<!-- 	<select id="dealList" resultType="com.team.deal.DTO.DealDTO">
+		SELECT
+		DEAL_NUM,DEAL_ID,DEAL_SUBJECT,DEAL_CONTENT,DEAL_REGION,DEAL_IMG,DEAL_READCOUNT,DEAL_DATETIME
+		FROM TB_DEAL ORDER BY DEAL_NUM DESC
+	</select> -->
 
-<!-- 게시물 작성 -->
-<insert id="dealWriter">
-	INSERT INTO TB_DEAL(DEAL_NUM,DEAL_ID,DEAL_SUBJECT,DEAL_CONTENT,DEAL_REGION,DEAL_IMG,DEAL_READCOUNT,DEAL_DATETIME)
-	VALUES(#{DEAL_NUM},#{DEAL_ID},#{DEAL_SUBJECT},#{DEAL_CONTENT},#{DEAL_REGION},#{DEAL_IMG},#{DEAL_READCOUNT},#{DEAL_DATETIME})
-</insert>
+	<!-- 게시물 작성 -->
+	<insert id="dealWriter">
+		INSERT INTO
+		TB_DEAL(DEAL_NUM,DEAL_ID,DEAL_SUBJECT,DEAL_CONTENT,DEAL_REGION,DEAL_IMG,DEAL_READCOUNT,DEAL_DATETIME)
+		VALUES(#{DEAL_NUM},#{DEAL_ID},#{DEAL_SUBJECT},#{DEAL_CONTENT},#{DEAL_REGION},#{DEAL_IMG},#{DEAL_READCOUNT},#{DEAL_DATETIME})
+	</insert>
 
-<!-- 게시글 상세 내용 조회 -->
-<select id="dealRead" resultType="com.team.deal.DTO.DealDTO">
-	SELECT DEAL_NUM,DEAL_ID,DEAL_SUBJECT,DEAL_CONTENT,DEAL_REGION,DEAL_IMG,DEAL_READCOUNT,DEAL_DATETIME
-	FROM TB_DEAL WHERE DEAL_NUM =#{DEAL_NUM}
-</select>
+	<!-- 게시글 상세 내용 조회 -->
+	<select id="dealRead" resultType="com.team.deal.DTO.DealDTO">
+		SELECT
+		DEAL_NUM,DEAL_ID,DEAL_SUBJECT,DEAL_CONTENT,DEAL_REGION,DEAL_IMG,DEAL_READCOUNT,DEAL_DATETIME
+		FROM TB_DEAL WHERE DEAL_NUM =#{DEAL_NUM}
+	</select>
 
-<!-- 게시글 수정하기 -->
-<update id="dealUpdate">
-	UPDATE TB_DEAL SET DEAL_SUBJECT=#{DEAL_SUBJECT},DEAL_CONTENT=#{DEAL_CONTENT},DEAL_REGION=#{DEAL_REGION},
-	DEAL_IMG=#{DEAL_IMG} WHERE DEAL_NUM=#{DEAL_NUM}
-</update>
+	<!-- 게시글 수정하기 -->
+	<update id="dealUpdate">
+		UPDATE TB_DEAL SET
+		DEAL_SUBJECT=#{DEAL_SUBJECT},DEAL_CONTENT=#{DEAL_CONTENT},DEAL_REGION=#{DEAL_REGION},
+		DEAL_IMG=#{DEAL_IMG} WHERE DEAL_NUM=#{DEAL_NUM}
+	</update>
 
-<!-- 게시글 삭제 -->
-<delete id="dealDelete">
-	DELETE FROM TB_DEAL WHERE DEAL_NUM=#{DEAL_NUM}
-</delete>
+	<!-- 게시글 삭제 -->
+	<delete id="dealDelete">
+		DELETE FROM TB_DEAL WHERE DEAL_NUM=#{DEAL_NUM}
+	</delete>
 
-<select id="dealListWithPaging" resultType="com.team.deal.DTO.DealDTO">
-<!-- 	<![CDATA[
-		select deal_num,deal_id,deal_subject,deal_content,deal_region,deal_img,deal_readcount,deal_datetime
-		from tb_deal
-		where deal_num>0
-		order by deal_num desc, deal_datetime desc
-		limit #{pageNum},#{amount}
-	]]> -->
-	
-</select>
+ 	<select id="getListWithPaging" parameterType="map" resultType="com.team.deal.DTO.DealDTO">
+			<![CDATA[SELECT DEAL_NUM,DEAL_ID,DEAL_SUBJECT,DEAL_CONTENT,DEAL_REGION,DEAL_IMG,DEAL_READCOUNT,DEAL_DATETIME
+			FROM TB_DEAL WHERE DEAL_NUM>0 ORDER BY DEAL_NUM DESC
+			LIMIT 1,10]]>
 
+	</select>
+	<select id="totalCount" resultType="Integer">
+		<![CDATA[
+		SELECT COUNT(*) FROM TBL_BOARD
+		]]>
+	</select>
 </mapper>

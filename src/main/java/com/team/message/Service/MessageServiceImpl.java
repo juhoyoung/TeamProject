@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.team.member.VO.MemberVO;
 import com.team.message.DAO.MessageDAO;
+import com.team.message.VO.MessageSearchVO;
 import com.team.message.VO.MessageVO;
 import com.team.message.VO.SendMessageVO;
 
@@ -18,14 +19,30 @@ public class MessageServiceImpl implements MessageService{
 	
 	//쪽지 전체 목록 
 	@Override
-	public List<MessageVO>listAll()throws Exception{
-		return messageDao.listAll();
+	public List<MessageVO>listAll(MemberVO memberVO)throws Exception{
+		String message_id = memberVO.getID();
+		return messageDao.listAll(message_id);
+	}
+	
+	//검색한 쪽지 리스트
+	@Override
+	public List<MessageVO>listAll(MemberVO memberVO, MessageSearchVO msvo)throws Exception{
+		String message_id = memberVO.getID();
+		return messageDao.listAll(message_id, msvo);
+	}
+	
+	//페이징을 위한 카운트
+	@Override
+	public Integer listCount(MemberVO memberVO, MessageSearchVO msvo)throws Exception{
+		String message_id = memberVO.getID();
+		return messageDao.listCount(message_id, msvo);
 	}
 	
 	//내가 보낸 쪽지
 	@Override
-	public List<SendMessageVO>sendListAll()throws Exception{
-		return messageDao.sendListAll();
+	public List<SendMessageVO>sendListAll(MemberVO memberVO)throws Exception{
+		String message_id = memberVO.getID();
+		return messageDao.sendListAll(message_id);
 	}
 		
 	//쪽지 개수

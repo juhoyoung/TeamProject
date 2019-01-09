@@ -21,29 +21,29 @@
 	<font color="white" id="send_text" style="font-weight: 600; font-size: 18px;">보낸 쪽지 확인</font>
 </div>
 <c:if test="${member.ID!= null}">
-	<div title="메세지 확인">
+	<div title="메세지 확인" id="viewForm" style="padding: 55px 30px; font-size: 15px; line-height: 200%;">
 		<form method="post" name="messageView" id="messageView">
 			<table align="center" width="90%" cellpadding="0" cellspacing="0" border="0">
 				<tr bgcolor="white">
-					<td>받는 사람</td>
+					<th>받는 사람</th>
 					<td>${msdto.MESSAGE_RECEIVER}</td>
 				</tr>
 				<tr>
-					<td>제목</td>
+					<th>제목</th>
 					<td>${msdto.MESSAGE_SUBJECT}</td>
 				</tr>
 				<tr>
-					<td>보낸 날짜</td>
+					<th>보낸 날짜</th>
 					<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${msdto.MESSAGE_SENDTIME}"/></td>
 				</tr>
 				<tr>
-					<td>내용</td>
+					<th>내용</th>
 					<td>${msdto.MESSAGE_CONTENT}</td>
-				</tr>
-				<tr align="center">
-					<td><input type="button" value="창닫기" id="closeBtn" onclick="window.close()"></td>
-				</tr>
+				</tr>			
 			</table>
+			<div align="center" style="line-height: 150%; margin-top: 50px;">
+				<input type="button" value="창닫기" id="closeBtn" onclick="window.close()">
+			</div>
 		</form>
 	</div>
 </c:if>

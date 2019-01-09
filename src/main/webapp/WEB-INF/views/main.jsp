@@ -130,6 +130,17 @@ $('#summernote').summernote({
         tabsize: 2,
         height: 100
 });
+//쪽지 검색
+$(function() {
+	$('.disabled').on('click', function(event) {
+		event.preventDefault();
+	});
+	$('#searchConfirm').on("click", function(event) {
+		var searchType = $("select[name=searchType]").val();
+		var keyword = $("input[name=keyword]").val();
+		self.location = "${pageContext.request.contextPath}/${member.ID}/messageList${pageMaker.makeQuery(1)}&searchType=" + searchType + "&keyword=" + encodeURI(keyword);
+	});
+});
 </script>
 <!-- js 파일 -->
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>

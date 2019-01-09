@@ -19,10 +19,11 @@
 <body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0">
 	<div id="positionLayer">
 	<!-- 레이어팝업 -->
+	<form method="post" action="${pageContext.request.contextPath}/${member.ID}/multiChatSend">
 	<table align="center" bgcolor="#FFFFFF">
 		<tr>
 			<td bgcolor="#4497fd" align="center" height="40px" width="100%" style="border: solid 1px #4497fd;">
-				<font style="font-size: 18px; font-weight:bold" color="#FFFFFF">채팅</font>
+				<font style="font-size: 18px; font-weight:bold" color="#FFFFFF">님과의 대화</font>
 			</td>
 		</tr>
 		<tr>
@@ -37,7 +38,7 @@
 		<%-- 로그인 되어 있을 경우 --%>
 		<c:when test="${member.ID != null}">
 			<p align="left" style="font-weight: 600; color: #1d2c52;">&nbsp;&nbsp;${member.ID}(${member.NAME})님이 입장하셨습니다.</p>
-			<input type="hidden" id="memID" width="110" value="${member.ID}" readonly="readonly">
+			<input type="hidden" id="memID" name="CHAT_SENDER" width="110" value="${member.ID}" readonly="readonly">
 			<span style="display: none;" id="memName" width="110" value="${member.NAME}" readonly="readonly">${member.NAME}</span>
 		</c:when>
 		<%-- 로그인되어 있지 않을 경우 로그인 화면으로 이동 --%>
@@ -50,7 +51,7 @@
 		<input type="text" class="chatInput" id="message" size="50" align="middle" placeholder="메세지를 입력하세요">
 			<br/>
 			<br/>
-			<input type="button" id="btnSend" value="전송"/>
+			<input type="submit" id="btnSend" value="전송"/>
 			<input type="button" id="closeBtn" value="창닫기" onclick="window.close()">
 			<%-- 대화창 --%>
 			<ul id="discussion">
@@ -58,6 +59,7 @@
 			</td>
 		</tr>	
 	</table>
+	</form>
 	<br/>
 <!-- 채팅 API -->
 	<script src="http://demo.dongledongle.com/Scripts/jquery-1.10.2.min.js"></script>
@@ -66,7 +68,7 @@
 	<script type="text/javascript">
 		var connection = $.hubConnection('http://demo.dongledongle.com/');
 		var chat = connection.createHubProxy('chatHub');
-		var meID = '<c:out value="${member.ID}"/>';
+		var sender = '<c:out value="${cvo.CHAT_SENDER}"/>';
 		
 		$(document).ready(
 				
@@ -75,29 +77,45 @@
 						var memName = document.getElementById('memName');
 						var list_ID = "<li class='listId'><strong>"+htmlEncode(memID)+"("+memName.innerHTML+")"+"</strong></li>"
 
-						if (meID == $('#memID')) {
+						if (sender == '${member.ID}') {
 							var list_route = "<li class='balloon right'>"+htmlEncode(message)+"</li><br/>";
-						}else {
+							return false;
+						}else{
 							var list_route = "<li class='balloon left'>"+htmlEncode(message)+"</li><br/>";
+							return false;
 						}
 						
 						$('#discussion').append(list_ID+list_route);
 					});
 					$('#message').focus();
-					connection.start({jsonp : true}).done(
-						function() {
-							$('#btnSend').click(function() {
-								chat.invoke('send', $('#memID').val(),
-													$('#message').val());
-													$('#message').val('').focus();
-							});
-						});
+				
+				connection.start({jsonp : true}).done(
+				function (){
+					$('#btnSend').click(function () {
+// 						var msg = $('#message').val();
+// 						if (msg!= "") {
+// 							message = {};
+// 							message.CHAT_SENDER = '${member.ID}'
+// 							message.CHAT_SENDCONTENT = '${cvo.CHAT_SENDCONTENT}'
+// 						}
+						chat.invoke('send', $('#memID').val(),
+											$('#message').val());
+											$('#message').val('').focus();
+					});
 				});
+		});
 		function htmlEncode(value) {
 			var encodedValue = $('<div />').text(value).html();
 			return encodedValue;
-		}
-
+		};
+		//엔터키 인식하여 메세지 전송
+		var input = document.getElementById("message");
+		input.addEventListener("keyup", function(event) {
+			event.preventDefault();
+			if (event.keyCode == 13) {
+				document.getElementById("btnSend").click();
+			}
+		});
 	</script>
 <!-- 채팅 API -->	
 	</div>

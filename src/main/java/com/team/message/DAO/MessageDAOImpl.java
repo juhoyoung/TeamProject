@@ -1,11 +1,14 @@
 package com.team.message.DAO;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.team.message.VO.MessageSearchVO;
 import com.team.message.VO.MessageVO;
 import com.team.message.VO.SendMessageVO;
 
@@ -18,17 +21,35 @@ public class MessageDAOImpl implements MessageDAO{
 	
 	//쪽지 전체 목록
 	@Override
-	public List<MessageVO>listAll()throws Exception{
-		return sqlSession.selectList(namespace+".listAll");
+	public List<MessageVO>listAll(String message_id)throws Exception{
+		return sqlSession.selectList(namespace+".listAll", message_id);
+	}
+	
+	//검색한 쪽지 리스트
+	@Override
+	public List<MessageVO>listAll(String message_id, MessageSearchVO msvo)throws Exception{
+		Map<String, Object>map = new HashMap<String, Object>();
+		map.put("message_id", message_id);
+		map.put("msvo", msvo);
+		return sqlSession.selectList(namespace+".searchList", map);
+	}
+	
+	//페이징을 위한 카운트
+	@Override
+	public Integer listCount(String message_id, MessageSearchVO msvo)throws Exception{
+		Map<String, Object>map = new HashMap<String, Object>();
+		map.put("message_id", message_id);
+		map.put("msvo", msvo);
+		return sqlSession.selectOne(namespace+".pagingCount", map);
 	}
 	
 	//내가 보낸 쪽지
 	@Override
-	public List<SendMessageVO>sendListAll()throws Exception{
-		return sqlSession.selectList(namespace+".listAll");
+	public List<SendMessageVO>sendListAll(String message_id)throws Exception{
+		return sqlSession.selectList(namespace+".sendListAll", message_id);
 	}
 	
-	//쪽지 개수
+	//안 읽은 쪽지 개수
 	@Override
 	public int countList(String message_id)throws Exception{
 		return sqlSession.selectOne(namespace+".count", message_id);

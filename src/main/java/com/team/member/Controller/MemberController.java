@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -15,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -42,7 +44,36 @@ public class MemberController {
 	public String check() {
 		return "member/check";
 	}
+	
+	@RequestMapping("/delete.do")
+	public String memberDelete(@RequestParam String ID, @RequestParam String PWD, Model model,HttpServletRequest request) {
+		boolean result = memberService.checkPw(ID,PWD);
 		
+		if(result) {
+			memberService.deleteMember(ID);
+			request.getSession().removeAttribute("member");
+			model.addAttribute("msg","탈퇴 되었습니다.");
+			return "login";
+		}else {
+			model.addAttribute("message","비밀번호 불일치");
+			model.addAttribute("member",memberService.getMember(ID));
+			return "/mypage";
+		}
+	}
+	
+	@RequestMapping(value = "/checkSignup", method = RequestMethod.POST)
+	public @ResponseBody String AjaxView(  
+		        @RequestParam("ID") String ID){
+		String str = "";
+		int idcheck = memberService.idCheck(ID);
+		if(idcheck==1){ //이미 존재하는 계정
+			str = "NO";	
+		}else{	//사용 가능한 계정
+			str = "YES";	
+		}
+		return str;
+	}
+	
 	@RequestMapping("/signUp")
 	public String insertMember(Model model) {
 		model.addAttribute("member", new MemberVO());
@@ -71,11 +102,14 @@ public class MemberController {
 	}
 	
 	@RequestMapping("{ID}/mypage")
-	public String mypageMember(@PathVariable String ID, HttpSession session, Model model) {
+	public String mypageMember(@PathVariable String ID, HttpSession session, Model model) throws Exception {
 		MemberVO vo = memberService.getMember(ID);
 		
 		
 		MemberVO sessionVO = (MemberVO)session.getAttribute("member");
+		
+		int count = messageService.countList(vo);
+		model.addAttribute("messageCount", count);
 		
 		// uri의 ID값과 로그인 정보랑 다를때 main으로 이동하게 변경
 		if(!ID.equals(sessionVO.getID())) {
@@ -95,7 +129,7 @@ public class MemberController {
 		if(result.hasErrors()) {
 			System.out.println(result.toString());
 			System.out.println("회원정보 수정시 오류가 발생");
-			return "member/mypage";
+			return "main.jsp?center=member/mypage";
 		}else {
 			memberService.updateMember(member);
 			return "login";

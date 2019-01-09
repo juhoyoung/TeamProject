@@ -61,7 +61,10 @@
 		    </tr>
 		    <tr>
 		   	 	<td class="send_text_td">받는 사람</td>
-		   	 	<td><input class="messageText" type="text" name="MESSAGE_RECEIVER" id="MESSAGE_RECEIVER" ></td>
+		   	 	<td>
+		   	 		<input class="messageText" type="text" name="MESSAGE_RECEIVER" id="MESSAGE_RECEIVER" readonly="readonly">
+		   	 		<button type="button" value="검색" onclick="" class="closeBtn"></button>
+		   	 	</td>
 		    </tr>
 		    <tr>
 		   	 	<td class="send_text_td">제목</td>
@@ -74,7 +77,7 @@
 	      	<tr align="center">
 	      		<td colspan="2">
 	      			<input type="submit" value="보내기" id="sendBtn">
-					<input type="button" value="창닫기" id="closeBtn" onclick="window.close()">
+					<input type="button" value="창닫기" class="closeBtn" onclick="window.close()">
 				</td>
 	      	</tr>	      
 	    </table>

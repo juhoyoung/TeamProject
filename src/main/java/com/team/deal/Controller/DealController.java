@@ -1,6 +1,8 @@
 package com.team.deal.Controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -10,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.team.deal.DTO.Criteria;
 import com.team.deal.DTO.DealDTO;
+import com.team.deal.DTO.PageDTO;
 import com.team.deal.Service.DealService;
 
 @Controller
@@ -19,11 +23,23 @@ public class DealController {
 	@Inject
 	DealService dealService;
 	//�۸��
-	@RequestMapping("list")
+/*	@RequestMapping("list")
 	public String dealList(Model model) throws Exception{
 		List<DealDTO> list =dealService.dealList();
 		model.addAttribute("list", list);
 		return "main.jsp?center=deal/deal_list";
+	}*/
+	@RequestMapping("list")
+	public String list(Criteria cri,Model model) throws Exception{
+		Map<String, Object>map = new HashMap<>();
+		int pagenum=(cri.getPageNum()-1)*10;
+		map.put("amount", cri.getAmount());
+		map.put("pagenum", pagenum);
+		
+		int total=dealService.totalCount();
+		model.addAttribute("list",dealService.getList(map));
+		model.addAttribute("pageMaker",new PageDTO(cri, total));
+		return "deal/deal_list";
 	}
 
 	//�۾�����������

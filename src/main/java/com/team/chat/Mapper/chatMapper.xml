@@ -5,8 +5,14 @@
 	<!-- 채팅 내용 DB에 삽입 -->
 	<insert id="insert">
 		INSERT INTO TB_CHAT
-		(CHAT_SENDER, CHAT_RECEIVER, CHAT_SENDCONTENT, CHAT_SENDTIME)
+		(CHAT_SENDER, CHAT_SENDTIME)
 		VALUES
-		(#{CHAT_SENDER}, #{CHAT_RECEIVER}, #{CHAT_SENDCONTENT}, NOW())
+		(#{CHAT_SENDER}, NOW())
 	</insert>
+	
+	<select id="read" resultType="ChatVO" parameterType="ChatVO">
+		SELECT * 
+		FROM TB_CHAT
+		ORDER BY CHAT_SENDTIME DESC limit 1
+	</select>
 </mapper>

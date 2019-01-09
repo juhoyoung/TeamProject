@@ -17,9 +17,11 @@
 <!-- font -->
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 </head>
+<%-- 로그인된 아이디 --%>
+<input type="hidden" id="mem_id" value="${member.ID}">
 <!-- body -->
 <body class="w3-theme-l5">
-<div class="main">
+<div class="main" style="overflow-y:auto;">
 <!-- Header -->
 	<jsp:include page="../layout/header.jsp"/>
 <!-- END Header -->
@@ -60,10 +62,13 @@
 <tr><td>조회수</td><td>${data.DEAL_READCOUNT }</td></tr>
 
 </table>
+
+                            
 <a href="${path}/${member.ID}/deal/updatepage?DEAL_NUM=${data.DEAL_NUM}">수정</a>
 <a href="${path}/${member.ID}/deal/delete?DEAL_NUM=${data.DEAL_NUM}">삭제</a>
 <input type="button" value="목록" onclick="location.href='${path}/${member.ID}/deal/list'">
 <input type="button" value="글쓰기" onclick="location.href='${path}/${member.ID}/deal/write'">
+
 		</div>
             </div>
           </div>

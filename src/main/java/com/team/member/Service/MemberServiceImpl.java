@@ -32,4 +32,17 @@ public class MemberServiceImpl{
 		// TODO Auto-generated method stub
 		return memberDAO.GetSearchMember(searchInfo);
 	}
+	public int idCheck(String ID) {
+		// TODO Auto-generated method stub
+		return memberDAO.idcheck(ID);
+	}
+	
+	public boolean checkPw(String ID, String PWD) {
+		return memberDAO.checkPw(ID,PWD);
+	}
+
+	public void deleteMember(String ID) {
+		memberDAO.deleteMember(ID);
+		
+	}
 }

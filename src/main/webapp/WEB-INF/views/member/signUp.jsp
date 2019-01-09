@@ -52,7 +52,37 @@ function input(){
 var input = document.getElementById("PIC1").value; 
 temp = input;
 document.getElementById("PIC").value = temp;
+document.getElementById('PIC').submit();
 }
+</script>
+
+<script type="text/javascript">
+$(function(){
+	//아이디 중복체크
+	    $('#ID').blur(function(){
+	        $.ajax({
+		     type:"POST",
+		     url:"checkSignup",
+		     data:{
+		            "ID":$('#ID').val()
+		     },
+		     success:function(data){	//data : checkSignup에서 넘겨준 결과값
+		            if($.trim(data)=="YES"){
+		               if($('#ID').val()!=''){ 
+		               	alert("사용가능한 아이디입니다.");
+		               }
+		           	}else{
+		               if($('#ID').val()!=''){
+		                  alert("중복된 아이디입니다.");
+		                  $('#ID').val('');
+		                  $('#ID').focus();
+		               }
+		            }
+		         }
+		    }) 
+	     })
+
+	});
 </script>
 </head>
 <body class="main">
@@ -94,7 +124,7 @@ document.getElementById("PIC").value = temp;
 								<tr>
 									<th scope="row">비밀번호</th>
 									<td>
-										<form:input class="signupInput" path="PWD" maxlength="20"/>
+										<form:password class="signupInput" path="PWD" maxlength="20"/>
 									</td>
 								</tr>
 								<tr>

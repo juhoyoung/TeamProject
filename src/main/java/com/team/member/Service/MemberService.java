@@ -15,4 +15,10 @@ public interface MemberService {
 	public void updateMember(MemberVO vo);
 	
 	public List<MemberVO> GetSearchMember(Map<String, String> searchInfo);
+	
+	public int idcheck(String ID);
+	
+	public boolean checkPw(String ID, String PWD);	
+	
+	public void deleteMember(String ID);
 }
