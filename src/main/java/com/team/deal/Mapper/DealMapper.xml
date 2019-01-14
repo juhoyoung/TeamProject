@@ -4,11 +4,11 @@
 <mapper namespace="com.team.deal.Mapper.DealMapper">
 
 	<!-- 게시물 목록 불러오기 -->
-<!-- 	<select id="dealList" resultType="com.team.deal.DTO.DealDTO">
+	<select id="dealList" resultType="com.team.deal.DTO.DealDTO">
 		SELECT
 		DEAL_NUM,DEAL_ID,DEAL_SUBJECT,DEAL_CONTENT,DEAL_REGION,DEAL_IMG,DEAL_READCOUNT,DEAL_DATETIME
 		FROM TB_DEAL ORDER BY DEAL_NUM DESC
-	</select> -->
+	</select>
 
 	<!-- 게시물 작성 -->
 	<insert id="dealWriter">
@@ -36,12 +36,12 @@
 		DELETE FROM TB_DEAL WHERE DEAL_NUM=#{DEAL_NUM}
 	</delete>
 
- 	<select id="getListWithPaging" parameterType="map" resultType="com.team.deal.DTO.DealDTO">
+<!--  	<select id="getListWithPaging" parameterType="map" resultType="com.team.deal.DTO.DealDTO">
 			<![CDATA[SELECT DEAL_NUM,DEAL_ID,DEAL_SUBJECT,DEAL_CONTENT,DEAL_REGION,DEAL_IMG,DEAL_READCOUNT,DEAL_DATETIME
 			FROM TB_DEAL WHERE DEAL_NUM>0 ORDER BY DEAL_NUM DESC
 			LIMIT 1,10]]>
 
-	</select>
+	</select -->
 	<select id="totalCount" resultType="Integer">
 		<![CDATA[
 		SELECT COUNT(*) FROM TBL_BOARD

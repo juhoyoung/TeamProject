@@ -16,12 +16,12 @@ public class DealServiceImpl implements DealService{
 	@Inject
 	DealDAO dealDao;
 
-/*	@Override
+	@Override
 	public List<DealDTO> dealList() throws Exception {
 		
 		return dealDao.dealList();
 	}
-	*/
+	
 
 
 	@Override
@@ -47,11 +47,11 @@ public class DealServiceImpl implements DealService{
 		
 	}
 
-	@Override
+/*	@Override
 	public List<DealDTO> getList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return dealDao.getListWithPaging(map);
-	}
+	}*/
 
 	@Override
 	public int totalCount() throws Exception {

@@ -8,8 +8,8 @@ import com.team.deal.DTO.DealDTO;
 public interface DealService {
 
 	// �Խù� ��� ��ȸ
-	/*	public List<DealDTO> dealList() throws Exception;*/
-	public List<DealDTO> getList(Map<String, Object> map)throws Exception;
+	public List<DealDTO> dealList() throws Exception;
+	/*public List<DealDTO> getList(Map<String, Object> map)throws Exception;*/
 	public int totalCount()throws Exception;
 
 	// �Խù� �ۼ�

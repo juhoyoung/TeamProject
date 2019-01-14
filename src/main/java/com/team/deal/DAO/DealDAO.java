@@ -9,8 +9,8 @@ import com.team.deal.DTO.DealDTO;
 
 public interface DealDAO {
 	//�Խù� ��Ϻ���
-	/*public List<DealDTO> dealList() throws Exception;*/
-	public List<DealDTO> getListWithPaging(Map<String, Object> map)throws Exception;
+	public List<DealDTO> dealList() throws Exception;
+	/*public List<DealDTO> getListWithPaging(Map<String, Object> map)throws Exception;*/
 	public int totalCount()throws Exception;
 	//�Խù� �ۼ�
 	public void writerDeal(DealDTO ddto)throws Exception;

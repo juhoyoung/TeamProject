@@ -23,13 +23,13 @@ public class DealController {
 	@Inject
 	DealService dealService;
 	//�۸��
-/*	@RequestMapping("list")
+	@RequestMapping("list")
 	public String dealList(Model model) throws Exception{
 		List<DealDTO> list =dealService.dealList();
 		model.addAttribute("list", list);
 		return "main.jsp?center=deal/deal_list";
-	}*/
-	@RequestMapping("list")
+	}
+/*	@RequestMapping("list")
 	public String list(Criteria cri,Model model) throws Exception{
 		Map<String, Object>map = new HashMap<>();
 		int pagenum=(cri.getPageNum()-1)*10;
@@ -40,7 +40,7 @@ public class DealController {
 		model.addAttribute("list",dealService.getList(map));
 		model.addAttribute("pageMaker",new PageDTO(cri, total));
 		return "deal/deal_list";
-	}
+	}*/
 
 	//�۾�����������
 	@RequestMapping("write")
