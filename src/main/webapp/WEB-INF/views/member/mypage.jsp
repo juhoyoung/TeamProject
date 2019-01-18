@@ -33,10 +33,10 @@
 		<input type="hidden" name="PIC1" id="PIC1" value ="{{originalFileUrl}}">
 		<div class = "mailbox-attachment-info">
 			<a href ="{{originalFileUrl}}" class="mailbox-attachment-name">
-				<i class = "fa fa-paperclip"></i>{{originalFileName}}
+				<img src="{{imgSrc}}" alt = "Attachment" class ="view">
 			</a>
 			<a href="{{fullName}}" class = "btn btn-default btn-xs pull-right delBtn">
-				<i class="fa fa-fw fa-remove"></i>
+				<i class="fa fa-fw fa-remove" style="font-size: 20px; color: #78787c;"></i>
 			</a>
 		</div>
 	</li>
@@ -45,13 +45,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.7/handlebars.min.js"></script>
 <script type="text/javascript" src = "${pageContext.request.contextPath}/resources/js/imglogin2.js"></script>
 <script type="text/javascript">
-var temp; 
-
-function input(){
-var input = document.getElementById("PIC1").value; 
-temp = input;
-document.getElementById("PIC").value = temp;
-}
 </script>
 <script type="text/javascript">
 		$(document).ready(function() {
@@ -139,7 +132,7 @@ document.getElementById("PIC").value = temp;
 								<th>프로필사진</th>
 								<td  colspan="3" class="imgfile">
 									<input type="file" class = "file">
-									<ul class = "uploadedFileList"></ul>
+									<ul class = "uploadedFileList" style="list-style: none;"></ul>
 									<form:hidden path="PIC" id="PIC"/>
 								</td>
 							</tr>	
@@ -152,8 +145,6 @@ document.getElementById("PIC").value = temp;
 								<br/>
 							</div>
 						</form:form>
-					<input type="button" style="position: absolute; top: 400px; right: 650px; border-radius: 5px; background-color: #6494ff; border: none;
-		  									padding: 3px 10px; color: white; font-weight: 600;" onclick="input()" value="사진전송">
 				</div>
 			</div>
           </div>

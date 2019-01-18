@@ -28,7 +28,7 @@
 }
 .balloon.left{
 	margin-right: 30px;
-	background: #4497fd;
+	background: #cbcbcd;
 }
 .balloon.right{
 	margin-left: 30px;
@@ -50,7 +50,7 @@
   	left:-40px;
  	bottom:auto;
  	border-width:15px 40px 0 0;
- 	border-color:transparent #4497fd;	
+ 	border-color:transparent #cbcbcd;	
 }
 .balloon.right:after {
 	  top:16px;

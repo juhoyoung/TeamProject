@@ -15,7 +15,9 @@
 					<img src="${pageContext.request.contextPath}/resources/img/baby.jpg" alt="defaultImage">					
 				</c:when>
 				<c:otherwise>
-					<img src="${pageContext.request.contextPath}/${profile.PIC}">
+					<a href= "${pageContext.request.contextPath}/${profile.PIC}" class="mailbox-attachment-name" data-lightbox = "uploadImages">
+						<img src="${pageContext.request.contextPath}/${profile.PIC}">
+					</a>
 				</c:otherwise>
 			</c:choose>
          </div>
@@ -66,6 +68,7 @@
 {{/s_r_list}}
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<%-- <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/followblock.js"></script> --%>
+<%-- <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>--%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/imglogin.js"></script>
+<script type="text/javascript" src = "${pageContext.request.contextPath}/resources/js/lightbox.js"></script>
 </body>

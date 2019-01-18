@@ -3,24 +3,6 @@
 pageNum = 0;
 isDetach = true;
 
-$("#btnSend").click(function() {
-        $.ajax({
-            type : "POST",
-            data : {
-            	"mem_ID" : $("#mem_ID").val(),
-            	"uID" : $("#uID").val()
-            },
-            url : "multiChat",
-            success : function(data) {
-                if ($.trim(data) == $("#uID").val()) {
-                	$("#discussion li").addClass("class", "right");
-                } else {
-	                $("#discussion li").addClass("class", "left");
-                }
-            }
-        });
-    });
-
 function getContextPath() { // ContextPath 얻어오는 함수
 
 	var hostIndex = location.href.indexOf(location.host) + location.host.length;

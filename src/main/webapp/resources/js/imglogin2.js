@@ -1,4 +1,11 @@
+var temp; 
 
+function input(){
+var input = document.getElementById("PIC1").value; 
+temp = input;
+document.getElementById("PIC").value = temp;
+document.getElementById('PIC').submit();
+}
 $(document).ready(function(){
 	
 	$('input[type="file"]').on('change', function(e){
@@ -22,6 +29,7 @@ $(document).ready(function(){
 			success : function(data){
 				console.log(data);
 				printFiles(data);
+				input();
 				$(".noAttach").remove();
 			}
 		});
@@ -30,18 +38,22 @@ $(document).ready(function(){
 	$(".uploadedFileList").on("click",".delBtn", function(e) {
 		e.preventDefault();
 		var that = $(this);
+		console.log(that);
+		that.parents("li").remove();
+		/*
 		$.ajax({
 			type : "POST",
-			url :"/TeamPro/gallery/delete",
+			url :"/TeamPro/gallery/imgDelete",
 			data : {fileName: that.attr("href")},
 			datatype : "text",
 			success : function(result){
 				if(result == "DELETED"){
-					alert("삭제되었습니다.");
+					//alert("삭제되었습니다.");
 					that.parents("li").remove();
 				}
 			}
 		});
+		*/
 		
 	});	
 });
@@ -98,5 +110,3 @@ function printFiles(data){
 		that.find(".fa-paperclip").attr("class","fa fa-camera");
 	}
 }
-
-

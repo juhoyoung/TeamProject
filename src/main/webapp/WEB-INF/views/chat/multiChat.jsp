@@ -99,9 +99,9 @@
 				function() {
 					chat.on('addNewMessageToPage', function(memID, message) {
 						var memName = document.getElementById('memName');
-						var list_ID = "<li class='listId' style='margin-left: 30px;'><strong style='color: #1d2c52;'>"+htmlEncode(memID)+"("+memName.innerHTML+")"+"</strong></li>"
+						var list_ID = "<li class='listId'><strong style='color: #1d2c52;'>"+htmlEncode(memID)+"</strong></li>"
 //  						var list_pic = "<img src='../resources/img/logo_noFlower.png' style='width: 12%; display:block;'>"
-						var list_route = "<li class='balloon right'><span name='CHAT_SENDCONTENT' id='CHAT_SENDCONTENT'>"+htmlEncode(message)+"</span></li><br/>";
+						var list_route = "<li class='balloon'><span name='CHAT_SENDCONTENT' id='CHAT_SENDCONTENT'>"+htmlEncode(message)+"</span></li><br/>";
 						
 						$('#discussion').append(list_ID+list_route);
 						var chatAreaHeight = $('#chatArea').height();
@@ -136,6 +136,14 @@
 			}else{
 				$('#btnSend').removeAttr('disabled');	
 			}
+		/* var my_id = document.getElementById("memID");
+		var uid = document.getElementById("uID");
+
+			if (my_id == sender) {
+				$('#discussion li').addClass('right');
+			}else{
+				$('#discussion li').addClass('left');
+			} */
 		});
 	</script>
 <!-- 채팅 API -->	

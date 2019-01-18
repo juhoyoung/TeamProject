@@ -20,12 +20,10 @@
 <!-- 핸들바 기능 -->
 <script id ="imgLogin" type="text/x-handlebars-template">
 	<li>
-		<img src="{{imgSrc}}" alt = "Attachment" class ="view">
 		<input type="hidden" name="PIC1" id="PIC1" value ="{{originalFileUrl}}">
 		<div class = "mailbox-attachment-info">
 			<a href ="{{originalFileUrl}}" class="mailbox-attachment-name">
-				<i class="fa fa-file-image-o" aria-hidden="true" style="font-size: 20px; color: #78787c;"></i>
-				<span style="color: #1d2c52; font-size: 14px; text-align: center;">{{originalFileName}}</span>
+				<img src="{{imgSrc}}" alt = "Attachment" class ="view">
 			</a>
 			<a href="{{fullName}}" class = "btn btn-default btn-xs pull-right delBtn">
 				<i class="fa fa-fw fa-remove" style="font-size: 20px; color: #78787c;"></i>
@@ -46,16 +44,6 @@
 	<script type="text/javascript" src = "${pageContext.request.contextPath}/resources/js/imglogin.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-<script type="text/javascript">
-var temp; 
-
-function input(){
-var input = document.getElementById("PIC1").value; 
-temp = input;
-document.getElementById("PIC").value = temp;
-document.getElementById('PIC').submit();
-}
-</script>
 
 <script type="text/javascript">
 $(function(){
@@ -84,6 +72,22 @@ $(function(){
 	     })
 
 	});
+	
+$(function(){
+	  $('#PWD').keyup(function(){
+	   $('font[name=check]').text('');
+	  }); //#user_pass.keyup
+
+	  $('#chpass').keyup(function(){
+	   if($('#PWD').val()!=$('#chpass').val()){
+	    $('font[name=check]').text('');
+	    $('font[name=check]').html("암호틀림");
+	   }else{
+	    $('font[name=check]').text('');
+	    $('font[name=check]').html("암호맞음");
+	   }
+	  }); //#chpass.keyup
+	 });
 </script>
 </head>
 <body class="main">
@@ -129,6 +133,13 @@ $(function(){
 										<form:password class="signupInput" path="PWD" maxlength="20"/>
 									</td>
 								</tr>
+								<tr>
+							    	<td scope="row">비밀번호확인</td>
+							    		<td>
+							    			<input type="password" name="chpass" id="chpass" size="10" class="signupInput"/>
+							    			<font name="check" size="2" color="red"></font> 
+							    		</td>
+							    </tr>
 								<tr>
 									<td></td>
 									<td colspan="2">
@@ -192,8 +203,6 @@ $(function(){
 							</tfoot>
 					</form:form>
 				</table>
-				<input type="button" style="position: absolute; top: 520px; left:350px; border-radius: 5px; background-color: #6494ff; border: none;
-		  									padding: 3px 10px; color: white; font-weight: 600;" onclick="input()" value="사진등록">
 		   	</div>
 		</div>
 	</div>	
