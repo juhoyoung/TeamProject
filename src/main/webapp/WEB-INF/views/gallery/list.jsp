@@ -85,6 +85,8 @@
 
 <script id="gallery-template" type="text/x-handlebars-template">
 {{#gall}}
+
+{{#SetPrivercy gallery/gb_Privacy gallery/mb_ID}}
 <div id="gallery_{{gallery/gb_Num}}">
 	<span class="profileImg">
 		<img src="${pageContext.request.contextPath}/{{#GetImgSrc memVO/pic}}{{/GetImgSrc}}" alt="Avatar"
@@ -139,7 +141,7 @@
 		<font class="writeTime w3-opacity">{{gallery/gb_Date}}</font><br/><br/>
 
 	
-
+	
 	<%-- 캐러셀 --%>
 	<div id="carouselControls_{{gallery/gb_Num}}" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
@@ -173,7 +175,8 @@
 	</button>
 	
 	<hr class="w3-clear" style="margin: 5px 0 20px;">
-</div>	
+</div>
+{{/SetPrivercy}}	
 {{/gall}}
 </script>
 

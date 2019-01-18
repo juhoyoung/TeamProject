@@ -96,6 +96,18 @@ function regHelper(){
 		}
 		
 	});
+	
+	Handlebars.registerHelper('SetPrivercy', function(Privercy,id,options) {
+		//console.log(isfollowed + " " + type);
+		var sessionID = $("#mem_id").val();
+		
+		if(Privercy == "N" || sessionID == id){
+			return options.fn(this);
+		}else{
+			return options.inverse(this);
+		}
+
+	});
 }
 
 function ShowGallery(id, isMyGall){
@@ -108,6 +120,7 @@ function ShowGallery(id, isMyGall){
 	else{
 		GotoUrl = "/TeamPro/getSpecGallery"
 	}
+
 	if(is_gDetach == true)
 		$("#gallery_list").children().detach();
 	
@@ -121,7 +134,7 @@ function ShowGallery(id, isMyGall){
 		DataType : "json",
 		url : GotoUrl,
 		success : function(result) {
-			//console.log(result.length + " " + is_gDetach);
+			console.log(result);
 			// 차단되어있을때 화면 잠금.			
 			if(result.length != 0){
 				if(result[0].isblocked == 'true'){

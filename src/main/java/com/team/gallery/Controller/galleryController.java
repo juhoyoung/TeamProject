@@ -259,9 +259,7 @@ public class galleryController {
 			
 		}
 		
-		// 차단 처리 끝
-		
-		
+		// 차단 처리 끝		
 
 		// 글 8개씩 불러옴.
 		String pageNum = String.valueOf(Integer.parseInt(galleryInfo.get("pageNum")) * 8);
@@ -285,7 +283,7 @@ public class galleryController {
 			Map<String, Object> temp = new HashMap<>();
 
 			List<galleryVO> file = gbService.GetImgList(gtemp.getGb_Num());
-			System.out.println("galleryController = " + gtemp.getGb_Num());
+			
 			int rcCount = rcService.getCount(gtemp.getGb_Num());
 			
 			
