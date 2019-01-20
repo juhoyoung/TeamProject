@@ -172,6 +172,13 @@ function ShowGallery(id, isMyGall){
 	
 }
 function galleryDelete(GB_Num){
+	
+	var txt;
+	var r = confirm("정말 삭제 하시겠습니까?");
+	if (r == false) {
+		return;
+	} 
+	
 	$.ajax({
 		
 		type : "POST",
