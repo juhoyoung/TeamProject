@@ -81,10 +81,10 @@ $(function(){
 	  $('#chpass').keyup(function(){
 	   if($('#PWD').val()!=$('#chpass').val()){
 	    $('font[name=check]').text('');
-	    $('font[name=check]').html("암호틀림");
+	    $('font[name=check]').html("암호 불일치");
 	   }else{
 	    $('font[name=check]').text('');
-	    $('font[name=check]').html("암호맞음");
+	    $('font[name=check]').html("암호 일치");
 	   }
 	  }); //#chpass.keyup
 	 });
@@ -96,7 +96,7 @@ $(function(){
 <!-- END Header -->
 	<div class="w3-col m3" id="signupArea" align="center">
       <!-- Profile -->
-      	<div class="w3-card w3-round w3-white" style="width:550px; padding: 30px 0 30px 30px;">
+      	<div class="w3-card w3-round w3-white" style="width:550px; padding: 30px 0 30px 30px; color: #1d2c52;">
         	<div class="w3-container">
 				<table id="signupTable">
 					<form:form action="insertOk" method="post" commandName="member" >		
@@ -118,7 +118,7 @@ $(function(){
 									<td>
 										<form:input class="signupInput" path="ID" maxlength="20" />
 										<input type="button" value="중복확인" id="checkSignup" style="background-color: #6494ff; border-radius: 5px; border: none;
-		  																							  padding: 2px 10px; color: white;font-weight: 600;">
+		  																							  padding: 3px 10px; color: white;font-weight: 600;">
 									</td>
 								</tr>
 								<tr>
@@ -134,9 +134,9 @@ $(function(){
 									</td>
 								</tr>
 								<tr>
-							    	<td scope="row">비밀번호확인</td>
+							    	<th scope="row">비밀번호 확인</th>
 							    		<td>
-							    			<input type="password" name="chpass" id="chpass" size="10" class="signupInput"/>
+							    			<input type="password" name="chpass" id="chpass" size="10" class="signupInput" style="width:165px; margin-top: 2px;"/>
 							    			<font name="check" size="2" color="red"></font> 
 							    		</td>
 							    </tr>
