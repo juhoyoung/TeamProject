@@ -39,7 +39,7 @@
 <script id="follow-template" type="text/x-handlebars-template">
 {{#follow}}		
 	<div id="list_{{target_id}}">
-		<img src=${pageContext.request.contextPath}/{{#GetImgSrc memVO/pic}}{{/GetImgSrc}} alt="프로필 사진" class="w3-left w3-margin-right w3-circle" style="width: 70px">
+		<img src="${pageContext.request.contextPath}/{{#GetImgSrc memVO/pic}}{{/GetImgSrc}}" alt="프로필 사진" class="w3-left w3-margin-right w3-circle" style="width: 70px; max-height: 70px;">
 		<span id="span_fBtn" class="w3-right">
 			<button type="button" class="w3-button w3-theme-d1 w3-margin-bottom followBtn fbBtn {{#SetBtnState isfollowed 'follow'}}{{/SetBtnState}} followbtn_{{target_id}}"
 				value='{{target_id}}'>팔로우
@@ -64,7 +64,7 @@
 <script id="block-template" type="text/x-handlebars-template">
 {{#block}}	
 	<div id="list_{{target_id}}">
-		<img src=${pageContext.request.contextPath}/{{#GetImgSrc memVO/pic}}{{/GetImgSrc}} alt="프로필 사진" class="w3-left w3-circle w3-margin-right" style="width: 60px">
+		<img src="${pageContext.request.contextPath}/{{#GetImgSrc memVO/pic}}{{/GetImgSrc}}" alt="프로필 사진" class="w3-left w3-circle w3-margin-right" style="width: 60px">
 		<span id="span_fBtn" class="w3-right">
 			<button type="button" class="w3-button w3-theme-d1 w3-margin-bottom blockBtn fbBtn blockbtn_{{target_id}} fbhide"
 				value='{{target_id}}'>차단

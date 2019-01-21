@@ -34,7 +34,7 @@ margin: 0px 10px 10px 10px;
 					<br />
 					<div class="w3-center image_wrapper">
 						<%-- 만약 회원 프로필 이미지가 없을 경우에는 기본 이미지를 띄운다. --%>
-						<img src="${pageContext.request.contextPath}/{{sMem_pic}}" class="w3-circle">
+						<img src="${pageContext.request.contextPath}/{{sMem_pic}}" class="w3-circle" style="height: 110px;  width: 100%;">
 					</div>
 					<hr>
 					<%-- 회원 정보 --%>
