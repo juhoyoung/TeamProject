@@ -7,7 +7,7 @@ $(document).ready(function(){
 		e.preventDefault();
 	});
 	
-	$('input[type="file"]').on('change', function(e){
+	$('#file_btn').on('change', function(e){
 		e.preventDefault();
 		
 		var file = e.target.files[0];

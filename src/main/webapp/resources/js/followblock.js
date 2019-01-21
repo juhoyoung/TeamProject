@@ -292,7 +292,7 @@ function getSuggestionFollowList(my_id){
 			data : my_id,
 			url : "/TeamPro/SuggestionFollow",
 			success : function(result) {
-				//console.log(result);
+				console.log(result);
 				if(result.length > 0){
 					var source = $("#s_recom_follow-template").html();
 					var template = Handlebars.compile(source);

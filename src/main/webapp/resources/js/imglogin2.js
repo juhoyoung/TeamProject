@@ -8,7 +8,7 @@ document.getElementById('PIC').submit();
 }
 $(document).ready(function(){
 	
-	$('input[type="file"]').on('change', function(e){
+	$('.file').on('change', function(e){
 		e.preventDefault();
 		
 		var file = e.target.files[0];
